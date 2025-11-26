@@ -12,8 +12,10 @@ namespace ProjetoKedu.Api.IoC
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<IResponsavelFinanceiroService, ResponsavelFinanceiroService>();
+            services.AddScoped<ICentroCustoService, CentroDeCustoService>();
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<IResponsavelFinanceiroRep, ResponsavelFinanceiroRep>();
+            services.AddScoped<ICentroDeCustoRep, CentroDeCustoRep>();
             return services;
         }
     }

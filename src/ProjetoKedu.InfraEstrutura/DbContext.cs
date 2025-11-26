@@ -26,6 +26,16 @@ namespace ProjetoKedu.InfraEstrutura
                 return true;
             return false;
         }
-        
+
+        public async Task<IEnumerable<T>> Buscar<T>(string sql, object parametros = null)
+        {
+            using var conexao = Connection;
+            conexao.Open();
+
+            var retorno = await conexao.QueryAsync<T>(sql, parametros);
+            if(retorno.Any())
+                return retorno;
+            return null;
+        }
     }
 }

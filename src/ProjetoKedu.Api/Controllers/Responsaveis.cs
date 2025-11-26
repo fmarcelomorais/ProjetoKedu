@@ -8,15 +8,15 @@ namespace ProjetoKedu.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ResponsavelFinanceiroController : ControllerBase
+    public class Responsaveis : ControllerBase
     {
         private readonly IResponsavelFinanceiroService _service;
-        public ResponsavelFinanceiroController(IResponsavelFinanceiroService service)
+        public Responsaveis(IResponsavelFinanceiroService service)
         {
             _service = service;
         }
 
-        [HttpPost]
+        [HttpPost] 
         public async Task<IActionResult> Cadastrar(ResponsavelFinanceiroDto responsavel)
         {
             if(!ModelState.IsValid)

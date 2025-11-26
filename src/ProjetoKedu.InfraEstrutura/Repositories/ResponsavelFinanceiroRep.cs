@@ -23,7 +23,10 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
             var gravado = await Context.Salvar(sql, new {Id = responsavel.Id, Nome = responsavel.NomeResponsavel()});
             
             if (!gravado)
-                Error.GetError("Não foi possivel gravar a informação");
+            {
+                Error.GetError("Não foi possivel gravar o Responsavel");
+                return false;
+            }
             return true;
         }
 
