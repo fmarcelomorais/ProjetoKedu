@@ -1,0 +1,6 @@
+@ProjetoKedu.Api_HostAddress = http://localhost:5030
+
+GET {{ProjetoKedu.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
