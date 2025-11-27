@@ -15,6 +15,8 @@ namespace ProjetoKedu.Application.Interfaces
 
         Task<ResponsavelFinanceiroDto> ConsultarPorId(Guid id);
 
+        // Criar assinatura de editar
+
 
     }
 }

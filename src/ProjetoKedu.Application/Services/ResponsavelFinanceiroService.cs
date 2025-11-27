@@ -25,14 +25,13 @@ namespace ProjetoKedu.Application.Services
 
         public async Task<IEnumerable<ResponsavelFinanceiroDto>> ConsultarTodosResponsaveis()
         {
-
-            var responsaveis = await _repository.Consultar<ResponsavelFinanceiro>();
-
+            var responsaveis = await _repository.Consultar();
+          
             var responsavelDto = new List<ResponsavelFinanceiroDto>();
 
-            foreach (var consultar in responsaveis)
+            foreach (var responsavel in responsaveis)
             {
-                responsavelDto.Add(new ResponsavelFinanceiroDto(consultar.NomeResponsavel()));
+                responsavelDto.Add(new ResponsavelFinanceiroDto(responsavel.Id, responsavel.Nome));
             }
 
             return responsavelDto;
@@ -41,9 +40,14 @@ namespace ProjetoKedu.Application.Services
 
         public async Task<ResponsavelFinanceiroDto> ConsultarPorId(Guid id)
         {
-            var responsavelFinanceiro = await _repository.ConsultarPorId<ResponsavelFinanceiro>(id);
+            var responsavelFinanceiro = await _repository.ConsultarPorId(id);
 
-            return new ResponsavelFinanceiroDto(responsavelFinanceiro.NomeResponsavel());
+            return new ResponsavelFinanceiroDto(responsavelFinanceiro.Id, responsavelFinanceiro.Nome);
         }
+
+        // implementar o metodo da inteface - editar
+        // receber o id
+        // consultar por id o responsavel
+        // alterar o nome do responsavel com o nome enviado via request body
     }
 }

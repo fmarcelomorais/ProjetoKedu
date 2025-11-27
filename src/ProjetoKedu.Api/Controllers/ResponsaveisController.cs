@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoKedu.Application.DTOs;
 using ProjetoKedu.Application.Interfaces;
+using System.Threading.Tasks;
 
 namespace ProjetoKedu.Api.Controllers
 {
@@ -30,21 +31,52 @@ namespace ProjetoKedu.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> RetornarTodosResponsaveis()
         {
 
-            var responsaveis = _service.ConsultarTodosResponsaveis();
+            var responsaveis = await _service.ConsultarTodosResponsaveis();
 
-            return Ok(responsaveis);
+            if (responsaveis?.Count() > 0)
+                return Ok(new RetornoPadraoDto<ResponsavelFinanceiroDto>
+                {
+                    StatusCode = 200,
+                    Mensagem = "Sucesso",
+                    Retorno = responsaveis
+                });
+
+
+            return BadRequest(new RetornoPadraoDto<string>
+            {
+                StatusCode = 400,
+                Mensagem = "Nenhum responsavel foi encontrado.",
+                Retorno = null
+            });
             
         }
 
-        [HttpGet("{id:guid}")]
-        public IActionResult GetById(Guid id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> RetornarResponsavelPorId(Guid id)
         {
-           
-            return Ok();    
+            var responsavel = await _service.ConsultarPorId(id);
+
+            if (responsavel is null)
+                return BadRequest(new RetornoPadraoDto<string>
+                {
+                    StatusCode = 400,
+                    Mensagem = "Nenhum responsavel foi encontrado.",
+                    Retorno = null
+                });
+
+            return Ok(new RetornoPadraoDto<ResponsavelFinanceiroDto>
+            {
+                StatusCode = 200,
+                Mensagem = "Sucesso",
+                Retorno = new List<ResponsavelFinanceiroDto>() { responsavel }
+            });    
 
         }
+
+        // [HttpPut("{id}")] criar a rota de Editar (ResponsavelFinanceiroDto responsavel)
+        // retorno padrão de sucesso e erro. 
     }
 }

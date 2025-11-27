@@ -10,8 +10,8 @@ namespace ProjetoKedu.Core.Interfaces
     public interface IResponsavelFinanceiroRep 
     {
         Task<bool> Cadastrar(ResponsavelFinanceiro responsavel);
-        Task<ResponsavelFinanceiro> ConsultarPorId<T>(Guid id);
-        Task<IEnumerable<ResponsavelFinanceiro>> Consultar<T>();
-        Task<ResponsavelFinanceiro> EditarPlano(ResponsavelFinanceiro responsavel);
+        Task<ResponsavelFinanceiro> ConsultarPorId(Guid id);
+        Task<IEnumerable<ResponsavelFinanceiro>> Consultar();
+        Task<ResponsavelFinanceiro> Editar(ResponsavelFinanceiro responsavel);
     }
 }

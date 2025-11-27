@@ -9,13 +9,18 @@ namespace ProjetoKedu.Core.Entities
 {
     public class ResponsavelFinanceiro : Entity
     {
-        private Nome Nome { get; set; }
+        public string Nome { get; set; }
         public ResponsavelFinanceiro(string nomeResponsavel)
         {
-            Nome = new Nome(nomeResponsavel);
+            Nome = nomeResponsavel;
+        }
+
+        public ResponsavelFinanceiro()
+        {
+            
         }
 
         public string NomeResponsavel()
-            => Nome.Name;
+            => Nome;
     }
 }
