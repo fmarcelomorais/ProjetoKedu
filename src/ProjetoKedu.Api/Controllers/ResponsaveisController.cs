@@ -8,10 +8,10 @@ namespace ProjetoKedu.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Responsaveis : ControllerBase
+    public class ResponsaveisController : ControllerBase
     {
         private readonly IResponsavelFinanceiroService _service;
-        public Responsaveis(IResponsavelFinanceiroService service)
+        public ResponsaveisController(IResponsavelFinanceiroService service)
         {
             _service = service;
         }
@@ -27,6 +27,24 @@ namespace ProjetoKedu.Api.Controllers
             if(cadastrado)
                 return Created();
             return BadRequest("Erro ao Cadastrar Responsavel");
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+
+            var responsaveis = _service.ConsultarTodosResponsaveis();
+
+            return Ok(responsaveis);
+            
+        }
+
+        [HttpGet("{id:guid}")]
+        public IActionResult GetById(Guid id)
+        {
+           
+            return Ok();    
+
         }
     }
 }

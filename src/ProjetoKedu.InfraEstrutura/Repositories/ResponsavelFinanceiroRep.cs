@@ -20,8 +20,8 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
         public async Task<bool> Cadastrar(ResponsavelFinanceiro responsavel)
         {
             var sql = @"INSERT INTO responsavel (id, nome) VALUES (@Id, @Nome);";
-            var gravado = await Context.Salvar(sql, new {Id = responsavel.Id, Nome = responsavel.NomeResponsavel()});
-            
+            var gravado = await Context.Salvar(sql, new { Id = responsavel.Id, Nome = responsavel.NomeResponsavel() });
+
             if (!gravado)
             {
                 Error.GetError("Não foi possivel gravar o Responsavel");
@@ -29,20 +29,28 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
             }
             return true;
         }
-
-        public Task<ResponsavelFinanceiro> ConsultarPorId<T>(Guid id)
+     
+        public async Task<ResponsavelFinanceiro> ConsultarPorId<T>(Guid id)
         {
-            throw new NotImplementedException();
+            {
+                var sql = @"SELECT id, tipo FROM responsavelFinaceiro WHERE Id = @id;";
+                var responsavels = await Context.Buscar<ResponsavelFinanceiro>(sql, new { Id = id });
+
+                return responsavels.FirstOrDefault();
+            }
+
         }
 
-        public Task<IEnumerable<ResponsavelFinanceiro>> ConsultarPorId<T>()
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<ResponsavelFinanceiro> EditarPlano(ResponsavelFinanceiro responsavel)
         {
             throw new NotImplementedException();
         }
+
+        Task<IEnumerable<ResponsavelFinanceiro>> IResponsavelFinanceiroRep.Consultar<T>()
+        {
+            throw new NotImplementedException();
+        }
     }
+
 }

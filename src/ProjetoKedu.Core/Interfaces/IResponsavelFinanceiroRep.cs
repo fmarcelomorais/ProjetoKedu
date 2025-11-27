@@ -11,7 +11,7 @@ namespace ProjetoKedu.Core.Interfaces
     {
         Task<bool> Cadastrar(ResponsavelFinanceiro responsavel);
         Task<ResponsavelFinanceiro> ConsultarPorId<T>(Guid id);
-        Task<IEnumerable<ResponsavelFinanceiro>> ConsultarPorId<T>();
+        Task<IEnumerable<ResponsavelFinanceiro>> Consultar<T>();
         Task<ResponsavelFinanceiro> EditarPlano(ResponsavelFinanceiro responsavel);
     }
 }

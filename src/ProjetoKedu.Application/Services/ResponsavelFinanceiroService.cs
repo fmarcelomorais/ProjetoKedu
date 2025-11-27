@@ -22,5 +22,28 @@ namespace ProjetoKedu.Application.Services
                 return true;
             return false;
         }
+
+        public async Task<IEnumerable<ResponsavelFinanceiroDto>> ConsultarTodosResponsaveis()
+        {
+
+            var responsaveis = await _repository.Consultar<ResponsavelFinanceiro>();
+
+            var responsavelDto = new List<ResponsavelFinanceiroDto>();
+
+            foreach (var consultar in responsaveis)
+            {
+                responsavelDto.Add(new ResponsavelFinanceiroDto(consultar.NomeResponsavel()));
+            }
+
+            return responsavelDto;
+
+        }
+
+        public async Task<ResponsavelFinanceiroDto> ConsultarPorId(Guid id)
+        {
+            var responsavelFinanceiro = await _repository.ConsultarPorId<ResponsavelFinanceiro>(id);
+
+            return new ResponsavelFinanceiroDto(responsavelFinanceiro.NomeResponsavel());
+        }
     }
 }

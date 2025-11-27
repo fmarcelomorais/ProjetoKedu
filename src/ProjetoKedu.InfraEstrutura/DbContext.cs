@@ -37,5 +37,10 @@ namespace ProjetoKedu.InfraEstrutura
                 return retorno;
             return null;
         }
+
+        public Task<int> ExecutarComando(string sql, object value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -10,5 +10,11 @@ namespace ProjetoKedu.Application.Interfaces
     public interface IResponsavelFinanceiroService
     {
         Task<bool> SalvarResponsavel(ResponsavelFinanceiroDto responsavelFinanceiroDto);
+
+        Task<IEnumerable<ResponsavelFinanceiroDto>> ConsultarTodosResponsaveis();
+
+        Task<ResponsavelFinanceiroDto> ConsultarPorId(Guid id);
+
+
     }
 }
