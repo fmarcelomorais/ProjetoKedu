@@ -19,8 +19,8 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
         }
         public async Task<bool> Cadastrar(ResponsavelFinanceiro responsavel)
         {
-            var sql = @"INSERT INTO responsavel (id, nome) VALUES (@Id, @Nome);";
-            var gravado = await Context.Salvar(sql, new { Id = responsavel.Id, Nome = responsavel.NomeResponsavel() });
+            var sql = @"INSERT INTO responsaveis (id, nome) VALUES (@Id, @Nome);";
+            var gravado = await Context.Salvar(sql, new { Id = responsavel.Id, Nome = responsavel.Nome });
 
             if (!gravado)
             {
@@ -30,25 +30,27 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
             return true;
         }
      
-        public async Task<ResponsavelFinanceiro> ConsultarPorId<T>(Guid id)
+        public async Task<IEnumerable<ResponsavelFinanceiro>> Consultar()
         {
-            {
-                var sql = @"SELECT id, tipo FROM responsavelFinaceiro WHERE Id = @id;";
-                var responsavels = await Context.Buscar<ResponsavelFinanceiro>(sql, new { Id = id });
+            var sql = "SELECT Id, Nome FROM responsaveis";
+            var responsaveis = await Context.Buscar<ResponsavelFinanceiro>(sql);
+            return responsaveis;
+        }
+        public async Task<ResponsavelFinanceiro> ConsultarPorId(Guid id)
+        {
+            
+            var sql = @"SELECT * FROM responsaveis WHERE Id = @Id;";
+            var responsavels = await Context.Buscar<ResponsavelFinanceiro>(sql, new { Id = id });
 
-                return responsavels.FirstOrDefault();
-            }
+            return responsavels.FirstOrDefault();
+            
 
         }
-
-
-        public Task<ResponsavelFinanceiro> EditarPlano(ResponsavelFinanceiro responsavel)
+        public Task<ResponsavelFinanceiro> Editar(ResponsavelFinanceiro responsavel)
         {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<ResponsavelFinanceiro>> IResponsavelFinanceiroRep.Consultar<T>()
-        {
+            // cria a query update
+            // fazer chamada ao banco e alterar o nome
+            // retorna o novo dado
             throw new NotImplementedException();
         }
 
