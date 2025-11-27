@@ -14,10 +14,14 @@ namespace ProjetoKedu.Core.Entities
         private EMetodoPagamento MetodoPagamento { get; set; }
         private EStatusCobranca StatusCobranca { get; set; }
         private string CodigoPagamento { get; set; }
+        
 
-        public Cobranca()
+        public Cobranca(decimal valor, DateTime dataVencimento, EMetodoPagamento metodoPagamento)
         {
-            
+            Valor = valor;
+            DataVencimento = dataVencimento;
+            MetodoPagamento = metodoPagamento;
+            StatusCobranca = EStatusCobranca.EMITIDA;
         }
 
         public decimal RetornaValor()
