@@ -17,15 +17,15 @@ namespace ProjetoKedu.Api.Controllers
             _service = service;
         }
 
-        [HttpPost] 
+        [HttpPost]
         public async Task<IActionResult> Cadastrar(ResponsavelFinanceiroDto responsavel)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var cadastrado = await _service.SalvarResponsavel(responsavel);
 
-            if(cadastrado)
+            if (cadastrado)
                 return Created();
             return BadRequest("Erro ao Cadastrar Responsavel");
         }
@@ -51,7 +51,7 @@ namespace ProjetoKedu.Api.Controllers
                 Mensagem = "Nenhum responsavel foi encontrado.",
                 Retorno = null
             });
-            
+
         }
 
         [HttpGet("{id}")]
@@ -72,11 +72,30 @@ namespace ProjetoKedu.Api.Controllers
                 StatusCode = 200,
                 Mensagem = "Sucesso",
                 Retorno = new List<ResponsavelFinanceiroDto>() { responsavel }
-            });    
+            });
 
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var deletado = await _service.RemoverResponsavel(id);
 
-        // [HttpPut("{id}")] criar a rota de Editar (ResponsavelFinanceiroDto responsavel)
-        // retorno padrão de sucesso e erro. 
+            if (!deletado)
+                return BadRequest(new RetornoPadraoDto<string>
+                {
+                    StatusCode = 400,
+                    Mensagem = "Erro ao deletar o responsavel.",
+                    Retorno = null
+                });
+
+            return Ok(new RetornoPadraoDto<string>
+                {
+                StatusCode = 204,
+                Mensagem = "Responsavel deletado com sucesso.",
+                Retorno = null
+            });
+            // [HttpPut("{id}")] criar a rota de Editar (ResponsavelFinanceiroDto responsavel)
+            // retorno padrão de sucesso e erro. 
+        }
     }
 }

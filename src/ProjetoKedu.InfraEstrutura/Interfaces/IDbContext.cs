@@ -11,5 +11,6 @@ namespace ProjetoKedu.InfraEstrutura.Interfaces
         Task<bool> Salvar(string sql, object parametros);
         Task<IEnumerable<T>> Buscar<T>(string sql, object parametros = null);
         Task<int> ExecutarComando(string sql, object value);
+        Task<bool> Deletar<T>(string sql, object parametros = null);
     }
 }

@@ -9,7 +9,7 @@ namespace ProjetoKedu.InfraEstrutura
     public class DbContext : IDbContext
     {
         private string ConnectionString { get; }
-        private IDbConnection Connection {  get; set; }
+        private NpgsqlConnection Connection {  get; set; }
         public DbContext(IConfiguration configuration)
         {
             ConnectionString = configuration?.GetConnectionString("ConnectionString");
@@ -41,6 +41,16 @@ namespace ProjetoKedu.InfraEstrutura
         public Task<int> ExecutarComando(string sql, object value)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<bool> Deletar<T>(string sql, object parametros = null)
+        {
+           using var conexao = Connection;
+            conexao.Open();
+            var deletado = await conexao.ExecuteAsync(sql, parametros);
+            if (deletado > 0)
+                return true;
+            return false;
         }
     }
 }

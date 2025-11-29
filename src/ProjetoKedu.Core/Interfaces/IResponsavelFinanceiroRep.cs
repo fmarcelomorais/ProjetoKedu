@@ -13,5 +13,7 @@ namespace ProjetoKedu.Core.Interfaces
         Task<ResponsavelFinanceiro> ConsultarPorId(Guid id);
         Task<IEnumerable<ResponsavelFinanceiro>> Consultar();
         Task<ResponsavelFinanceiro> Editar(ResponsavelFinanceiro responsavel);
+        Task<bool> Remover(Guid id);
+        
     }
 }

@@ -45,6 +45,17 @@ namespace ProjetoKedu.Application.Services
             return new ResponsavelFinanceiroDto(responsavelFinanceiro.Id, responsavelFinanceiro.Nome);
         }
 
+        public Task<ResponsavelFinanceiroDto> EditarResponsavel(Guid id, ResponsavelFinanceiroDto responsavelFinanceiroDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RemoverResponsavel(Guid id)
+        {
+            var removido = _repository.Remover(id);
+            return removido;
+        }
+
         // implementar o metodo da inteface - editar
         // receber o id
         // consultar por id o responsavel

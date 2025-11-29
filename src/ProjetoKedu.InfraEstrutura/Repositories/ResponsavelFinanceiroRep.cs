@@ -54,6 +54,16 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<bool> Remover(Guid id)
+        {
+            var sql = @"DELETE FROM responsaveis WHERE Id = @Id;";
+            var deletar = await Context.Deletar<ResponsavelFinanceiro>(sql, new { Id = id });
+            if(!deletar)
+                Error.GetError("Não foi possivel deletar o Responsavel");
+            return deletar;
+
+        }
+        
     }
 
 }

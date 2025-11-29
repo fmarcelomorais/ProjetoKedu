@@ -15,7 +15,10 @@ namespace ProjetoKedu.Application.Interfaces
 
         Task<ResponsavelFinanceiroDto> ConsultarPorId(Guid id);
 
-        // Criar assinatura de editar
+        Task<ResponsavelFinanceiroDto> EditarResponsavel(Guid id, ResponsavelFinanceiroDto responsavelFinanceiroDto);
+        Task<bool> RemoverResponsavel(Guid id);
+
+        // Criar assinatura de editar e remover
 
 
     }
