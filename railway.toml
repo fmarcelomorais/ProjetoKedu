@@ -1,0 +1,5 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+start = "dotnet src/ProjetoKedu.Api/bin/Release/net8.0/ProjetoKedu.Api.dll"
