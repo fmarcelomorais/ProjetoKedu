@@ -1,5 +1,4 @@
-﻿using ProjetoKedu.Common.ValueObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +8,16 @@ namespace ProjetoKedu.Core.Entities
 {
     public class ResponsavelFinanceiro : Entity
     {
-        private Nome Nome { get; set; }
-        public ResponsavelFinanceiro(string nomeResponsavel)
+        public string Nome { get; set; }
+        public ResponsavelFinanceiro(Guid id, string nome)
         {
-            Nome = new Nome(nomeResponsavel);
+            Id = id;
+            Nome = nome;
+        }
+        public ResponsavelFinanceiro()
+        {
+
         }
 
-        public string NomeResponsavel()
-            => Nome.Name;
     }
 }

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetoKedu.Application.DTOs
+namespace ProjetoKedu.Application.Interfaces
 {
-    public record CentroDeCustoDto(Guid Id, int Codigo, string Tipo);
-    
+    public interface IRegistroCobranca
+    {
+    }
 }

@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace ProjetoKedu.Application.DTOs
 {
-    public record ResponsavelFinanceiroDto(string Nome);
+    public record ResponsavelFinanceiroDto(Guid Id, string Nome);
 }

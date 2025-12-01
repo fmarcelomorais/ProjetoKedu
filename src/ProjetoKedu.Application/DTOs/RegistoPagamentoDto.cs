@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace ProjetoKedu.Application.DTOs
 {
-    public record CentroDeCustoDto(Guid Id, int Codigo, string Tipo);
+    public record RegistoPagamentoDto(decimal Valor, DateTime DataPagemento);
     
 }

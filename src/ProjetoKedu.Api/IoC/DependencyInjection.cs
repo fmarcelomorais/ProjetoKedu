@@ -13,9 +13,13 @@ namespace ProjetoKedu.Api.IoC
         {
             services.AddScoped<IResponsavelFinanceiroService, ResponsavelFinanceiroService>();
             services.AddScoped<ICentroCustoService, CentroDeCustoService>();
+            services.AddScoped<IPlanoPagamentoService, PlanoPagamentoService>();
+            services.AddScoped<ICobrancaService, CobrancaService>();
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<IResponsavelFinanceiroRep, ResponsavelFinanceiroRep>();
             services.AddScoped<ICentroDeCustoRep, CentroDeCustoRep>();
+            services.AddScoped<IPlanoPagamentoRep, PlanoPagamentoRep>();
+            services.AddScoped<ICobrancaRep, CobrancaRep>();
             return services;
         }
     }

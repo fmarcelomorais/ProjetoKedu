@@ -8,18 +8,19 @@ namespace ProjetoKedu.Core.Entities
 {
     public  class CentroDeCusto : Entity
     {
-        private int Codigo {  get; set; }
-        private string Tipo { get; set; }
+        public int Codigo {  get; set; }
+        public string Tipo { get; set; }
 
-        public CentroDeCusto(int codigo, string tipo)
+        public CentroDeCusto(Guid id, int codigo, string tipo)
         {
+            Id = id;
             Codigo = codigo;    
             Tipo = tipo;
         }
 
-        public int RetornaCodigo()
-            => Codigo;
-        public string RetornaTipo()
-            => Tipo;
+        public CentroDeCusto()
+        {
+            
+        }
     }
 }

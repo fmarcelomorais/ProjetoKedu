@@ -11,6 +11,7 @@ namespace ProjetoKedu.Core.Enums
         EMITIDA,
         PAGA,
         CANCELADA,
-        VENCIDA
+        VENCIDA,
+        PARCIAL
     }
 }
