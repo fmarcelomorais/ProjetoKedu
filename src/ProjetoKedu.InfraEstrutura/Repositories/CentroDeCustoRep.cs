@@ -21,7 +21,7 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
         public async Task<bool> Cadastrar(CentroDeCusto centroDeCusto)
         {
             var sql = @"INSERT INTO centrodecusto (id, codigo, tipo) VALUES (@Id, @Codigo, @Tipo);";
-            var gravado = await Context.Salvar(sql, new { Id = centroDeCusto.Id, Codigo = centroDeCusto.RetornaCodigo(), Tipo = centroDeCusto.RetornaTipo() });
+            var gravado = await Context.Salvar(sql, new { Id = centroDeCusto.Id, Codigo = centroDeCusto.Codigo, Tipo = centroDeCusto.Tipo });
 
             if (!gravado)
             {
@@ -33,7 +33,7 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
 
         public async Task<IEnumerable<CentroDeCusto>> RetornaCentroDeCusto()
         {
-            var sql = @"SELECT codigo, tipo FROM centrodecusto;";
+            var sql = @"SELECT id, codigo, tipo FROM centrodecusto;";
             var centros = await Context.Buscar<CentroDeCusto>(sql);
 
             return centros;
@@ -41,7 +41,7 @@ namespace ProjetoKedu.InfraEstrutura.Repositories
 
         public async Task<CentroDeCusto> RetornaCentroDeCustoPorCodigo(int codigo)
         {
-            var sql = @"SELECT codigo, tipo FROM centrodecusto WHERE Codigo = @Codigo;";
+            var sql = @"SELECT id, codigo, tipo FROM centrodecusto WHERE Codigo = @Codigo;";
             var centro = await Context.Buscar<CentroDeCusto>(sql, new {Codigo = codigo });
 
             return centro.FirstOrDefault();

@@ -26,7 +26,7 @@ namespace ProjetoKedu.Application.Services
 
             foreach(var centro in centrosDeCusto)
             {
-                centrosDeCustoDto.Add(new CentroDeCustoDto(centro.RetornaCodigo(), centro.RetornaTipo()));
+                centrosDeCustoDto.Add(new CentroDeCustoDto(centro.Id, centro.Codigo, centro.Tipo));
             }
 
             return centrosDeCustoDto;
@@ -36,12 +36,12 @@ namespace ProjetoKedu.Application.Services
         {
             var centroDeCusto = await _repository.RetornaCentroDeCustoPorCodigo(codigo);
 
-            return new CentroDeCustoDto(centroDeCusto.RetornaCodigo(), centroDeCusto.RetornaTipo());
+            return new CentroDeCustoDto(centroDeCusto.Id, centroDeCusto.Codigo, centroDeCusto.Tipo);
         }
 
         public async Task<bool> SalvarCentroDeCusto(CentroDeCustoDto centroDeCustoDto)
         {
-            var centroDeCusto = new CentroDeCusto(centroDeCustoDto.Codigo, centroDeCustoDto.Tipo);
+            var centroDeCusto = new CentroDeCusto(centroDeCustoDto.Id, centroDeCustoDto.Codigo, centroDeCustoDto.Tipo);
 
             var cadastrado = await _repository.Cadastrar(centroDeCusto);
 

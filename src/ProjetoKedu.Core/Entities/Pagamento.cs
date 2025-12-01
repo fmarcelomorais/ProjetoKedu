@@ -8,9 +8,9 @@ namespace ProjetoKedu.Core.Entities
 {
     public class Pagamento
     {
-        private decimal Total {  get; set; }
-        private DateTime DataPagamento { get; set; }
-        private ResponsavelFinanceiro Responsavel {  get; set; }
+        public decimal Total {  get; set; }
+        public DateTime DataPagamento { get; set; }
+        public ResponsavelFinanceiro Responsavel {  get; set; }
         public Pagamento()
         {
             

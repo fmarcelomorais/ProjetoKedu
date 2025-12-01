@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace ProjetoKedu.Core.Interfaces
 {
-    public interface IPlanoPagamento
+    public interface ICobrancaRep
     {
-        void CadastrarPlano();
-        PlanoDePagamento ConsultarPlano();
-        void EditarPlano(PlanoDePagamento planoDePagamento);
+        Task<Cobranca> RegistrarPagamento(RegistroPagamento registroPagamento);
     }
 }

@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ProjetoKedu.Common\ProjetoKedu.Common.csproj" />
-  </ItemGroup>
-
 </Project>
